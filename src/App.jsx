@@ -1,9 +1,11 @@
 // import "./App.css";
-import InputContainer from "./Components/Shared/InputContainer";
+
+import SignForm from "./Components/Shared/SignForm";
+
 function App() {
   return (
     <>
-      <InputContainer label="Name" placeHoolder="Enter your name" />
+      <SignForm />
       <div>App</div>
     </>
   );
