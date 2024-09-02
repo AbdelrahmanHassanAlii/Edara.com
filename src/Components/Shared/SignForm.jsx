@@ -24,7 +24,7 @@ export default function SignForm() {
   }, []);
 
   return (
-    <div>
+    <div className='sign-inputs'>
       <Inputs inputs={signInputs} handleChange={handleChange} />
     </div>
   )
