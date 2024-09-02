@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState } from "react";
-import InputContainer from './InputContainer'
+import React, { useState, useEffect } from 'react';
+import { signData } from '../../Helper/Functions/signInputs';
+import Inputs from './Inputs';
 
 export default function SignForm() {
 
@@ -10,21 +10,22 @@ export default function SignForm() {
     user_name: "",
     password: "",
     confirm_password: ""
-  })
+  });
+
+  const [signInputs, setSignInputs] = useState([]);
 
   const handleChange = (e) => {
-    console.log(`${e.target.name} : ${e.target.value}`)
-    setUserdata({ ...userdata, [e.target.name]: e.target.value })
-    console.log(userdata)
-  }
+    setUserdata({ ...userdata, [e.target.name]: e.target.value });
+    console.log(userdata);
+  };
+
+  useEffect(() => {
+    setSignInputs(signData);
+  }, []);
 
   return (
     <div>
-      <InputContainer label="First name" name="first_name" type="text" onChange={handleChange} placeHoolder="Your first name" />
-      <InputContainer label="Last name" name="last_name" type="text" onChange={handleChange} placeHoolder="Your last name" />
-      <InputContainer label="User name" name="user_name" type="text" onChange={handleChange} placeHoolder="Your user name" />
-      <InputContainer label="Password" name="password" type="password" onChange={handleChange} placeHoolder="Your password" />
-      <InputContainer label="Confirm password" name="confirm_password" type="password" onChange={handleChange} placeHoolder="Confirm your password" />
+      <Inputs inputs={signInputs} handleChange={handleChange} />
     </div>
   )
 }
