@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { loginData } from './../../Helper/Functions/loginInputs';
 import Inputs from './Inputs';
+import ConfirmButton from './ConfirmButton';
 
 export default function LoginForm() {
 
@@ -14,6 +15,10 @@ export default function LoginForm() {
 
   const handleChange = (e) => {
     setLoginInputs({ ...loginInputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(loginInputs);
   };
 
@@ -23,8 +28,8 @@ export default function LoginForm() {
 
   return (
     <div className='login-inputs'>
-
       <Inputs inputs={lodinData} handleChange={handleChange} />
+      <ConfirmButton handleSubmit={handleSubmit} />
     </div>
   )
 }
