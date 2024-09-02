@@ -8,8 +8,8 @@ export default function InputContainer({ label, name, onChange, type, placeHoold
       <input 
         type={type || "text"} 
         name={name || ""} 
-        placeholder={placeHoolder} 
-        onChange={onChange} 
+        placeholder={placeHoolder || "Placeholder"} 
+        onChange={onChange || (() => {})} 
       />
     </div>
   );
