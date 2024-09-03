@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { loginData } from './../../Helper/Functions/loginInputs';
 import Inputs from './Inputs';
 import ConfirmButton from './ConfirmButton';
+import { login } from '../../Helper/Apis/Shared/login';
 
 export default function LoginForm() {
 
@@ -11,15 +12,21 @@ export default function LoginForm() {
     password: ""
   });
 
-  const [lodinData, setLoginData] = useState([]);
+  const [lodingData, setLoginData] = useState([]);
 
   const handleChange = (e) => {
     setLoginInputs({ ...loginInputs, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log(loginInputs);
+    
+    try {
+      const res = await login(loginInputs);
+      console.log(res); 
+    } catch (error) {
+      console.log(error.response.data);
+    }
   };
 
   useEffect(() => {
@@ -28,7 +35,7 @@ export default function LoginForm() {
 
   return (
     <div className='login-inputs'>
-      <Inputs inputs={lodinData} handleChange={handleChange} />
+      <Inputs inputs={lodingData} handleChange={handleChange} />
       <ConfirmButton handleSubmit={handleSubmit} />
     </div>
   )
