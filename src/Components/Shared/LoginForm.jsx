@@ -23,7 +23,8 @@ export default function LoginForm() {
     
     try {
       const res = await login(loginInputs);
-      console.log(res); 
+      localStorage.setItem("user", JSON.stringify(res));
+
     } catch (error) {
       console.log(error.response.data);
     }
