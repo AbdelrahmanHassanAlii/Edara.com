@@ -29,8 +29,9 @@ export default function UserData() {
         const fetchUserData = async () => {
             try {
                 const user = JSON.parse(localStorage.getItem("user"));
-                if (user && user.id && user.user_name && user.password) {
-                    const fetchedData = await getUserData("2", "KhaledMohamed65@edara.com", "123456");
+                console.log(user);
+                if (user && user.id && user.username && user.password) {
+                    const fetchedData = await getUserData(user.id, user.username, user.password);
                     setUserData(fetchedData);  // Set user data from API
                 } else {
                     console.error("No user data found in localStorage.");

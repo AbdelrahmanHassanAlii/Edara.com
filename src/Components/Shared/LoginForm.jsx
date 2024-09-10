@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import { loginData } from './../../Helper/Functions/loginInputs';
 import Inputs from './Inputs';
@@ -12,31 +11,31 @@ export default function LoginForm() {
     password: ""
   });
 
-  const [lodingData, setLoginData] = useState([]);
+  const [loadingData, setLoadingData] = useState([]);
 
   const handleChange = (e) => {
     setLoginInputs({ ...loginInputs, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     try {
       const res = await login(loginInputs);
       localStorage.setItem("user", JSON.stringify(res));
-
     } catch (error) {
       console.log(error.response.data);
     }
   };
 
   useEffect(() => {
-    setLoginData(loginData);
+    setLoadingData(loginData);  // Set login form input fields
   }, []);
 
   return (
     <div className='login-inputs'>
-      <Inputs inputs={lodingData} handleChange={handleChange} />
+      {/* Pass loginInputs to Inputs as values */}
+      <Inputs inputs={loadingData} handleChange={handleChange} values={loginInputs} />
       <ConfirmButton handleSubmit={handleSubmit} />
     </div>
   )

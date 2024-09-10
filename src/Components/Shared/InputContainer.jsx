@@ -10,6 +10,7 @@ export default function InputContainer({ label, name, onChange, type, placeholde
         placeholder={placeholder || "Placeholder"} 
         value={value || ""} 
         onChange={onChange || (() => {})} 
+        disabled={name === "id" || name === "personal_code" ? true : false}
       />
     </div>
   );

@@ -12,7 +12,7 @@ export default function Inputs({ inputs, handleChange, values = {} }) {
             name={input.name} 
             type={input.type} 
             placeholder={input.placeholder} 
-            value={values[input.name] || ''}  // Fallback to empty string if value is undefined
+            value={values[input.name] || ''} 
             onChange={handleChange}
           />
         ))
