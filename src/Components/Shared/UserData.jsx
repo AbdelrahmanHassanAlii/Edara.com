@@ -30,7 +30,7 @@ export default function UserData() {
             try {
                 const user = JSON.parse(localStorage.getItem("user"));
                 if (user && user.id && user.user_name && user.password) {
-                    const fetchedData = await getUserData(user.id, user.user_name, user.password);
+                    const fetchedData = await getUserData("2", "KhaledMohamed65@edara.com", "123456");
                     setUserData(fetchedData);  // Set user data from API
                 } else {
                     console.error("No user data found in localStorage.");
@@ -40,7 +40,7 @@ export default function UserData() {
             }
         };
         fetchUserData();
-        setUserInputs(userInputsData); 
+        setUserInputs(userInputsData);  // Set input fields data
     }, []);
 
     const handleChange = (e) => {
@@ -49,7 +49,8 @@ export default function UserData() {
 
     return (
         <div className="user-data">
-            <Inputs inputs={userInputs} handleChange={handleChange} values={userData} />
+            {/* Pass userData or an empty object as a fallback */}
+            <Inputs inputs={userInputs} handleChange={handleChange} values={userData || {}} />
         </div>
     );
 }

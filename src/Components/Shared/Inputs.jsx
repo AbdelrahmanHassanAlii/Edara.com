@@ -1,9 +1,7 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import InputContainer from './InputContainer';
 
-export default function Inputs({ inputs, handleChange, values }) {
+export default function Inputs({ inputs, handleChange, values = {} }) {
   return (
     <div className='inputs'>
       {
@@ -14,7 +12,7 @@ export default function Inputs({ inputs, handleChange, values }) {
             name={input.name} 
             type={input.type} 
             placeholder={input.placeholder} 
-            value={values[input.name] || ''} 
+            value={values[input.name] || ''}  // Fallback to empty string if value is undefined
             onChange={handleChange}
           />
         ))
