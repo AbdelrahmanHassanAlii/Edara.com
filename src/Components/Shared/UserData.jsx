@@ -4,9 +4,7 @@ import { userInputsData } from "../../Helper/Functions/userInputs";
 import { getUserData } from "../../Helper/Apis/User/getUserData";
 
 export default function UserData() {
-
     const [userInputs, setUserInputs] = useState([]); 
-    const [userPreviousData, setUserPreviousData] = useState({}); // Fixed typo 'useerPrviousData'
     const [userData, setUserData] = useState({
         id: "",
         first_name: "",
@@ -31,13 +29,9 @@ export default function UserData() {
         const fetchUserData = async () => {
             try {
                 const user = JSON.parse(localStorage.getItem("user"));
-
-                // Check if user exists in localStorage
-                if (user && user.id && user.username && user.password) {
-                    const userPreviousData = await getUserData(user.id, user.username, user.password);
-                    setUserPreviousData(userPreviousData);
-
-                    console.log(userPreviousData); // Log the fetched data
+                if (user && user.id && user.user_name && user.password) {
+                    const fetchedData = await getUserData(user.id, user.user_name, user.password);
+                    setUserData(fetchedData);  // Set user data from API
                 } else {
                     console.error("No user data found in localStorage.");
                 }
@@ -45,15 +39,17 @@ export default function UserData() {
                 console.error("Error fetching user data:", error);
             }
         };
-
-        fetchUserData(); // Call the async function
-
-        setUserInputs(userInputsData); // Set input fields data
+        fetchUserData();
+        setUserInputs(userInputsData); 
     }, []);
+
+    const handleChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+    };
 
     return (
         <div className="user-data">
-            <Inputs inputs={userInputs} />
+            <Inputs inputs={userInputs} handleChange={handleChange} values={userData} />
         </div>
     );
 }
