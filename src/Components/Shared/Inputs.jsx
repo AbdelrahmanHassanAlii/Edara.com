@@ -3,7 +3,7 @@
 import React from 'react';
 import InputContainer from './InputContainer';
 
-export default function Inputs({ inputs, handleChange }) {
+export default function Inputs({ inputs, handleChange, values }) {
   return (
     <div className='inputs'>
       {
@@ -13,7 +13,8 @@ export default function Inputs({ inputs, handleChange }) {
             label={input.label} 
             name={input.name} 
             type={input.type} 
-            placeHoolder={input.placeHoolder} 
+            placeholder={input.placeholder} 
+            value={values[input.name] || ''} 
             onChange={handleChange}
           />
         ))
